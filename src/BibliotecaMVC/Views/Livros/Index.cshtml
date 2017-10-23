@@ -1,0 +1,52 @@
+@model IEnumerable<BibliotecaMVC.Models.Livro>
+
+@{
+    ViewData["Title"] = "Livros";
+}
+
+<h2>Livros</h2>
+
+<p>
+    <a asp-action="Create">Adicionar novo livro</a>
+</p>
+
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            @Html.DisplayNameFor(model => model.Titulo):&nbsp;<input type="text" name="filtroPesquisa" value="@ViewBag.filtroPesquisa" />
+            <input type="submit" value="Pesquisar" class="btn btn-default" /> |
+            <a asp-action="Index">Limpar</a>
+        </p>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantidade)
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-ordenacao="@ViewBag.TituloSortParm">@Html.DisplayNameFor(model => model.Titulo)</a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titulo)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.LivroID">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.LivroID">Detalhar</a> |
+                <a asp-action="Delete" asp-route-id="@item.LivroID">Remover</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

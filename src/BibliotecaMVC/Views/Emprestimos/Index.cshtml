@@ -1,0 +1,47 @@
+@model IEnumerable<BibliotecaMVC.Models.Emprestimo>
+
+@{
+    ViewData["Title"] = "Empr&eacute;stimo";
+}
+
+<h2>Empr&eacute;stimo</h2>
+
+<p>
+    <a asp-action="Create">Adicionar novo empr&eacute;stimo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DataDevolucao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataInicio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataFim)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataDevolucao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataInicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataFim)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.EmprestimoID">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.EmprestimoID">Detalhar</a> |
+                <a asp-action="Delete" asp-route-id="@item.EmprestimoID">Remover</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

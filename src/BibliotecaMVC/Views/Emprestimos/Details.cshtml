@@ -1,0 +1,61 @@
+@model BibliotecaMVC.Models.Emprestimo
+
+@{
+    ViewData["Title"] = "Empr&eacute;stimo";
+}
+
+<h2>Empr&eacute;stimo</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DataDevolucao)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DataDevolucao)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DataInicio)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DataInicio)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DataFim)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DataFim)
+        </dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>
+            Livros
+        </dt>
+        <dd>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Nome
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.LivroEmprestimo.OrderBy(p => p.Livro.Titulo))
+            {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Livro.Titulo)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.EmprestimoID">Editar</a> |
+    <a asp-action="Index">Voltar para a lista</a>
+</div>
